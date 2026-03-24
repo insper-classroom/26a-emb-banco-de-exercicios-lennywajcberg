@@ -85,8 +85,8 @@ int main(){
     // }
     
     
-    alarm_id_t alarm_g;
-    alarm_id_t alarm_y;
+    alarm_id_t alarm_g = 0;
+    alarm_id_t alarm_y = 0;
 
     int led_status_g = 0;
     int led_status_y = 0;
@@ -132,8 +132,14 @@ int main(){
 
             flag_alarm_y = 0;
             alarm_enable_y = 0;
+            flag_timer_g = 0;
+            flag_timer_y = 0;
+            led_status_g = 0;
+            led_status_y = 0;
             cancel_alarm(alarm_g);
             cancel_alarm(alarm_y);
+            cancel_repeating_timer(&timer_g);
+            cancel_repeating_timer(&timer_y);
         }
         }
     }
