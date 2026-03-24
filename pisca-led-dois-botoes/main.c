@@ -75,14 +75,14 @@ int main(){
     gpio_set_irq_enabled(BTN_PIN_Y, GPIO_IRQ_EDGE_FALL, true);
 
     repeating_timer_t timer_g;
-    if (!add_repeating_timer_ms(100, timer_g_callback, NULL, &timer_g)) {
-        printf("Failed to add timer\n");
-    }
+    // if (!add_repeating_timer_ms(100, timer_g_callback, NULL, &timer_g)) {
+    //     printf("Failed to add timer\n");
+    // }
 
     repeating_timer_t timer_y;
-    if (!add_repeating_timer_ms(250, timer_y_callback, NULL, &timer_y)) {
-        printf("Failed to add timer\n");
-    }
+    // if (!add_repeating_timer_ms(250, timer_y_callback, NULL, &timer_y)) {
+    //     printf("Failed to add timer\n");
+    // }
     
     
     alarm_id_t alarm_g = NULL;
@@ -97,15 +97,17 @@ int main(){
  
 
     while (1) {
-        if (flag_btn_g){
+        if (flag_btn_g && !alarm_enable_g){
             flag_btn_g = 0;
             alarm_g = add_alarm_in_ms(1000, alarm_g_callback, NULL, false);
             alarm_enable_g = 1;
+            add_repeating_timer_ms(100, timer_g_callback, NULL, &timer_g);
         }
-        if (flag_btn_y){
+        if (flag_btn_y && !alarm_enable_y){
             flag_btn_y = 0;
             alarm_y = add_alarm_in_ms(2000, alarm_y_callback, NULL, false);
             alarm_enable_y = 1;
+            add_repeating_timer_ms(250, timer_y_callback, NULL, &timer_y);
         }
 
         if (alarm_enable_g && flag_timer_g){
