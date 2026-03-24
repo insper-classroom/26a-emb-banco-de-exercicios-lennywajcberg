@@ -85,8 +85,8 @@ int main(){
     // }
     
     
-    alarm_id_t alarm_g = NULL;
-    alarm_id_t alarm_y = NULL;
+    alarm_id_t alarm_g;
+    alarm_id_t alarm_y;
 
     int led_status_g = 0;
     int led_status_y = 0;
