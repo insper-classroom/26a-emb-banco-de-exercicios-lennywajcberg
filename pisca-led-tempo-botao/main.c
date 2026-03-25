@@ -50,12 +50,17 @@ int main() {
 
     int led_status = 0;
     int botao_apertado = 0;
+    bool timer_active = false;
     
     while (true) {
         if (flag_btn == 1 && botao_apertado == 0){ //pra pegar a primeira instancia do tempo
-            cancel_repeating_timer(&timer);
+            if (timer_active){
+                cancel_repeating_timer(&timer);
+                timer_active = false;
+            }
             tempo_fall = get_absolute_time();
-            gpio_put(LED_PIN,0);
+            led_status = 0;
+            gpio_put(LED_PIN,led_status);
             botao_apertado = 1;
         }
         if (flag_btn == 0 && botao_apertado == 1){
@@ -63,6 +68,7 @@ int main() {
             tempo_rise = get_absolute_time();
             int64_t duracao = absolute_time_diff_us(tempo_fall, tempo_rise);
             add_repeating_timer_us(duracao/2, timer_callback, NULL, &timer);
+            timer_active = true;
         }
         if (flag_timer){
             led_status = !led_status;
