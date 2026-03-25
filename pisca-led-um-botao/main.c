@@ -63,8 +63,8 @@ int main() {
         if (flag_btn && botao_pressionado == 0){
             flag_btn = 0;
             alarm = add_alarm_in_ms(5000, alarm_callback, NULL, false);
-            add_repeating_timer_ms(250, timer_y_callback, NULL, &timer_amarelo); // período é o ciclo de desligar e ligar, então se o período é 500ms, valor no timer é 250ms, pq a cada 250ms ele liga, e depois de 250ms desliga = 1 período.
-            add_repeating_timer_ms(75, timer_b_callback, NULL, &timer_azul);
+            add_repeating_timer_ms(500, timer_y_callback, NULL, &timer_amarelo); // período é o ciclo de desligar e ligar, então se o período é 500ms, valor no timer é 250ms, pq a cada 250ms ele liga, e depois de 250ms desliga = 1 período.
+            add_repeating_timer_ms(150, timer_b_callback, NULL, &timer_azul);
         }
         if (!flag_alarm && flag_y_timer){
             flag_y_timer = 0;

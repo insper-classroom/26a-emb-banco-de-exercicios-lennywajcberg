@@ -67,9 +67,6 @@ int main() {
             botao_apertado = 0;
             tempo_rise = to_us_since_boot(get_absolute_time());
             int64_t duracao = absolute_time_diff_us(tempo_fall, tempo_rise);
-            printf("fall: %llu", tempo_fall);
-            printf("rise: %llu", tempo_rise);
-            printf("duracao: %lld", duracao);
             add_repeating_timer_us(duracao, timer_callback, NULL, &timer);
             add_repeating_timer_us(250000, timer_pisca_callback, NULL, &timer_piscadas);
         }
