@@ -53,14 +53,13 @@ int main() {
 
     int led_status_y = 0;
     int led_status_b = 0;
-    int botao_pressionado = 0;
 
     repeating_timer_t timer_amarelo;
     repeating_timer_t timer_azul;
     alarm_id_t alarm = 0;
 
     while (true) {
-        if (flag_btn && botao_pressionado == 0){
+        if (flag_btn){
             flag_btn = 0;
             alarm = add_alarm_in_ms(5000, alarm_callback, NULL, false);
             add_repeating_timer_ms(500, timer_y_callback, NULL, &timer_amarelo); // período é o ciclo de desligar e ligar, então se o período é 500ms, valor no timer é 250ms, pq a cada 250ms ele liga, e depois de 250ms desliga = 1 período.
