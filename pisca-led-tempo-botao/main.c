@@ -67,7 +67,7 @@ int main() {
             botao_apertado = 0;
             tempo_rise = get_absolute_time();
             int64_t duracao = absolute_time_diff_us(tempo_fall, tempo_rise);
-            add_repeating_timer_us(duracao/2, timer_callback, NULL, &timer);
+            add_repeating_timer_us(duracao, timer_callback, NULL, &timer);
             timer_active = true;
         }
         if (flag_timer){
